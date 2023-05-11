@@ -10,7 +10,7 @@ if [[ ${arch} == "amd64" ]]; then
 fi
 
 echo "Downloading package - ${URL}"
-wget --quiet ${URL} -O gitlab.deb
+wget --quiet ${URL} -O /tmp/gitlab.deb
 
 results=$?
 if [ ${results} -ne 0 ]; then

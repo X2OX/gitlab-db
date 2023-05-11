@@ -26,7 +26,7 @@ jobs:
       - name: Clone and Patch
         run: |
           git clone -b "${GITHUB_REF:11}+ee.0" --depth=1 https://gitlab.com/gitlab-org/omnibus-gitlab.git
-          GITLAB_VERSION="${GITHUB_REF:11}+ee.0" && bash patch-dockerfile.sh
+          bash patch-dockerfile.sh
           cat omnibus-gitlab/docker/Dockerfile
           cat omnibus-gitlab/docker/RELEASE
 

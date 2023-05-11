@@ -6,6 +6,7 @@ cp patch-db-license.sh omnibus-gitlab/docker/assets
 
 cp -f download-package.sh omnibus-gitlab/docker/assets/download-package
 
+GITLAB_VERSION="${GITHUB_REF:11}+ee.0"
 echo "$GITLAB_VERSION"
 
 cat > omnibus-gitlab/docker/RELEASE <<EOF

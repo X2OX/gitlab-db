@@ -3,7 +3,7 @@
 sed -i 's/^FROM ubuntu.*/FROM ubuntu\:jammy/' omnibus-gitlab/docker/Dockerfile
 sed -i 's/\-recommends/\-recommends libatomic1/' omnibus-gitlab/docker/Dockerfile
 sed -i 's/lsb-release/os-release/' omnibus-gitlab/docker/assets/setup
-sed -i 's/libperl5.30/libperl5.34/' omnibus-gitlab/docker/assets/setup
+sed -i 's/libperl5\.30/libperl5\.34/' omnibus-gitlab/docker/assets/setup
 
 sed -i '/^MAINTAINER/ a\LABEL version="Development Beta"' omnibus-gitlab/docker/Dockerfile
 sed -i 's/# Allow to access embedded tools/RUN \/assets\/patch-db-license.sh/' omnibus-gitlab/docker/Dockerfile

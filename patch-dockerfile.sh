@@ -1,10 +1,12 @@
 #!/bin/bash
 
 sed -i '/^MAINTAINER/ a\LABEL version="Development Beta"' omnibus-gitlab/docker/Dockerfile
-sed -i '/^# Allow to access embedded tools a\RUN /assets/patch-db-license.sh' omnibus-gitlab/docker/Dockerfile
+sed -i 's/# Allow to access embedded tools/RUN \/assets\/patch-db-license.sh/' omnibus-gitlab/docker/Dockerfile
 cp patch-db-license.sh omnibus-gitlab/docker/assets
 
 cp -f download-package.sh omnibus-gitlab/docker/assets/download-package
+
+echo "$GITLAB_VERSION"
 
 cat > omnibus-gitlab/docker/RELEASE <<EOF
 PACKAGECLOUD_REPO=gitlab-ee

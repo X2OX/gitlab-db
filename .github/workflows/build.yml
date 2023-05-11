@@ -25,7 +25,7 @@ jobs:
 
       - name: Clone and Patch
         run: |
-          git clone -b "$GITHUB_REF:11+ee.0" --depth=1 https://gitlab.com/gitlab-org/omnibus-gitlab.git
+          git clone -b "${GITHUB_REF:11}+ee.0" --depth=1 https://gitlab.com/gitlab-org/omnibus-gitlab.git
           bash patch-dockerfile.sh
 
       - name: Build and push

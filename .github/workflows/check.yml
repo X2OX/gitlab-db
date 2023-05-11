@@ -19,9 +19,17 @@ jobs:
         with:
           script: |
             const tags = [];
+            
+            let tagIdx = 1;
             while (true) {
-              const data = await github.rest.repos.listTags({owner:context.repo.owner, repo: context.repo.repo})
+              const data = await github.rest.repos.listTags({
+                owner:context.repo.owner, repo: context.repo.repo,
+                page:tagIdx,per_page:100,
+              })
+              
               if (data.length ===0) break;
+              
               tags.push(data)
             }
+            
             console.log(tags)

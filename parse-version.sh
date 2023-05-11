@@ -7,9 +7,7 @@ if [ -f ./version.list ]; then
 fi
 
 for i in $(seq 1 ${SEARCH_PAGES}); do
-    curl -s "https://packages.gitlab.com/gitlab/gitlab-ee?page=${i}" | grep "_arm64.deb" | grep -v '\-rc' | sed 's/.*>\(.*\)<.*/\1/' | grep -Eo '(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)' >> version.list;
-    echo "$(curl -s "https://packages.gitlab.com/gitlab/gitlab-ee?page=${i}" | grep "_arm64.deb" | grep -v '\-rc')"
-    cat version.list
+    curl -s "https://packages.gitlab.com/gitlab/gitlab-ee?page=${i}" | grep "ubuntu" | grep "jammy" | grep "_arm64.deb" | grep -v '\-rc' | grep -Eo '(\d+)\.(\d+)\.(\d+)' >> version.list;
 done
 
 sort -rVu version.list -o version.list

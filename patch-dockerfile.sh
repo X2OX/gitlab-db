@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sed -i 's/^FROM ubuntu.*/FROM ubuntu\:focal/' omnibus-gitlab/docker/Dockerfile
+sed -i 's/^FROM ubuntu.*/FROM ubuntu\:jammy/' omnibus-gitlab/docker/Dockerfile
 sed -i 's/\-recommends/\-recommends libatomic1/' omnibus-gitlab/docker/Dockerfile
 sed -i 's/lsb-release/os-release/' omnibus-gitlab/docker/assets/setup
 
@@ -18,6 +18,6 @@ cat > omnibus-gitlab/docker/RELEASE <<EOF
 PACKAGECLOUD_REPO=gitlab-ee
 RELEASE_PACKAGE=gitlab-ee
 RELEASE_VERSION=$GITLAB_VERSION
-DOWNLOAD_URL=https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/focal/gitlab-ee_$GITLAB_VERSION
+DOWNLOAD_URL=https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/jammy/gitlab-ee_$GITLAB_VERSION
 
 EOF

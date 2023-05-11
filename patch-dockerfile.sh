@@ -13,6 +13,6 @@ cat > omnibus-gitlab/docker/RELEASE <<EOF
 PACKAGECLOUD_REPO=gitlab-ee
 RELEASE_PACKAGE=gitlab-ee
 RELEASE_VERSION=$GITLAB_VERSION
-DOWNLOAD_URL=https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/focal/gitlab-ce_$GITLAB_VERSION
+DOWNLOAD_URL=https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/focal/gitlab-ee_$GITLAB_VERSION
 
 EOF

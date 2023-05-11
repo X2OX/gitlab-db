@@ -14,3 +14,9 @@ jobs:
       - name: Check Version
         run: |
           bash parse-version.sh && cat version.list
+
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const tags = await github.rest.git.getTag({owner:context.repo.owner, repo: context.repo.repo})
+            consolg.log(tags)

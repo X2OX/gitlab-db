@@ -44,5 +44,5 @@ jobs:
         with:
           context: omnibus-gitlab/docker
           push: true
-          tags: ${{ steps.meta.outputs }}
+          tags: ${{ steps.meta.outputs.tags }}
           platforms: linux/amd64,linux/arm64

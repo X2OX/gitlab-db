@@ -25,7 +25,7 @@ export async function getGitLabVersion() {
     return name.slice(0, name.length - 5);
   }).filter((v) => v !== "");
 
-  return arr.map(v=>new Version(v));
+  return arr.map((v) => new Version(v));
 }
 
 export async function isLatest(v: Version) {

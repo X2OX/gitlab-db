@@ -17,4 +17,6 @@ jobs:
           deno-version: v1.x
 
       - name: Check Version
+        env:
+          GITHUB_TOKEN: ${{ secrets.SECRET }}
         run: deno run -A main.ts

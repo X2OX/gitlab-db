@@ -30,6 +30,8 @@ jobs:
 
       - name: Clone and Patch
         id: meta
+        env:
+          GITHUB_TOKEN: ${{ secrets.SECRET }}
         run: |
           git clone -b "${GITHUB_REF:11}+ee.0" --depth=1 https://gitlab.com/gitlab-org/omnibus-gitlab.git
           bash patch-dockerfile.sh

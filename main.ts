@@ -1,32 +1,28 @@
-export interface DockerTagsResponse {
-    count: number
-    next: string
-    results: {
-        name: string
-    }[]
+import {cleanUnsafe, sort} from "./version.ts";
+import {getGitLabVersion} from "./dockerhub.ts";
+import {getGCRVersion} from "./github.ts";
+
+const gitlab = cleanUnsafe(await getGitLabVersion())
+sort(gitlab);
+const data = gitlab.slice(gitlab.length - 3)
+
+const gcr = await getGCRVersion();
+const s = new Set(gcr)
+
+const tags = data.map(v => {
+    if (!s.has(`v${v.toString()}`)) return v.toString()
+    return ''
+}).filter(v => v !== '')
+
+console.log(tags);
+if (tags.length !== 0) {
+    for (const v of tags) {
+        await fetch('https://api.github.com/repos/x2ox/gitlab-db/git/refs', {
+            body: JSON.stringify({
+                "ref": `refs/tags/v${v}`,
+                "sha": `${Deno.env.get("GITHUB_SHA")}`
+            }),
+            headers: {Authorization: `token ${Deno.env.get("GITHUB_TOKEN")}`},
+        })
+    }
 }
-
-const supportVer = {
-    maj:15,
-}
-
-async function getGitLabVersion() {
-    const resp = await fetch('https://registry.hub.docker.com/v2/repositories/gitlab/gitlab-ee/tags/?page_size=100&page=1&name&ordering')
-    const data = await resp.json() as DockerTagsResponse
-
-    const arr = data.results.map(({name}) => {
-        if (name === 'latest' || name === 'rc' || name === 'nightly') return ''
-        if (name.startsWith('14.')) return '';
-        if (!name.endsWith('-ee.0')) {
-            console.log('unsupported version', name)
-            return ''
-        }
-        return name.slice(0, name.length - 5)
-    }).filter(v => v !== '')
-
-    return arr
-}
-
-const data = await getGitLabVersion()
-console.log(data)
-

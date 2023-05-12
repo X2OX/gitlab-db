@@ -10,6 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
       - name: Setup up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -24,16 +29,18 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Clone and Patch
+        id: meta
         run: |
           git clone -b "${GITHUB_REF:11}+ee.0" --depth=1 https://gitlab.com/gitlab-org/omnibus-gitlab.git
           bash patch-dockerfile.sh
           cat omnibus-gitlab/docker/Dockerfile
           cat omnibus-gitlab/docker/RELEASE
+          deno run -A gen-tags.ts >> "$GITHUB_OUTPUT"
 
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
           context: omnibus-gitlab/docker
           push: true
-          tags: ghcr.io/x2ox/gitlab-db:${{ github.ref_name }}
+          tags: ${{ steps.meta.outputs }}
           platforms: linux/amd64,linux/arm64

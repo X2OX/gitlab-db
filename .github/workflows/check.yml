@@ -16,13 +16,5 @@ jobs:
         with:
           deno-version: v1.x
 
-      - name: Cache
-        uses: actions/cache@v3
-        with:
-          key: ${{ runner.os }}-deno-${{ hashFiles('deno.lock') }}
-          path: |
-            ~/.deno
-            ~/.cache/deno
-
       - name: Check Version
         run: deno run -A main.ts

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sed -i 's/restricted_attr(:plan).presence || STARTER_PLAN/restricted_attr(:plan).presence || ULTIMATE_PLAN/' /opt/gitlab/embedded/service/gitlab-rails/ee/app/models/license.rb
-
 cat > /opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub <<EOF
 -----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA28liBFZqFgV/vfHTdFdj

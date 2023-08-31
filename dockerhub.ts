@@ -17,7 +17,7 @@ export async function getGitLabVersion() {
 
   const arr = data.results.map(({ name }) => {
     if (name === "latest" || name === "rc" || name === "nightly") return "";
-    if (name.startsWith("14.")) return "";
+    if (name.startsWith("15.")) return "";
     if (!name.endsWith("-ee.0")) {
       console.log("unsupported version", name);
       return "";

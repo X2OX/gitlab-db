@@ -19,6 +19,9 @@ cat > omnibus-gitlab/docker/RELEASE <<EOF
 PACKAGECLOUD_REPO=gitlab-ee
 RELEASE_PACKAGE=gitlab-ee
 RELEASE_VERSION=$GITLAB_VERSION
+TARGETARCH=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/)
+DOWNLOAD_URL_amd64="https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/jammy/gitlab-ee_${GITLAB_VERSION}_amd64.deb/download.deb"
+DOWNLOAD_URL_arm64="https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/jammy/gitlab-ee_${GITLAB_VERSION}_arm64.deb/download.deb"
 DOWNLOAD_URL=https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/jammy/gitlab-ee_$GITLAB_VERSION
 
 EOF

@@ -21,7 +21,7 @@ RELEASE_PACKAGE=gitlab-ee
 RELEASE_VERSION=$GITLAB_VERSION
 TARGETARCH=amd64
 DOWNLOAD_URL=https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/jammy/gitlab-ee_$GITLAB_VERSION
-DOWNLOAD_URL_amd64=$DOWNLOAD_URL
-DOWNLOAD_URL_arm64=$DOWNLOAD_URL
+DOWNLOAD_URL_amd64=https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/jammy/gitlab-ee_$GITLAB_VERSION
+DOWNLOAD_URL_arm64=https://packages.gitlab.com/gitlab/gitlab-ee/packages/ubuntu/jammy/gitlab-ee_$GITLAB_VERSION
 
 EOF
